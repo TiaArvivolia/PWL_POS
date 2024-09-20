@@ -61,6 +61,8 @@ class UserController extends Controller
         //         'level_id' => 2
         //     ],
         // );
+        // return view('user', ['data' => $user]);
+
 
         // $user = UserModel::firstOrNew(
         //     [
@@ -79,5 +81,33 @@ class UserController extends Controller
         );
         $user->save();
         return view('user', ['data' => $user]);
+        
+        // $user = UserModel::create(
+        //     [
+        //         'username' => 'manager55',
+        //         'nama' => 'Manager55',
+        //         'password' => Hash::make('12345'),
+        //         'level_id' => 2
+        //     ],
+        // );
+        
+        // $user->username = 'manager56';
+        
+        // $user->isDirty(); // true
+        // $user->isDirty('username'); // true
+        // $user->isDirty('nama'); // true
+        // $user->isDirty(['nama', 'username']); // true
+        
+        // $user->isClean(); // true
+        // $user->isClean('username'); // true
+        // $user->isClean('nama'); // true
+        // $user->isClean(['nama', 'username']); // true
+
+        // $user->save();
+
+        // $user->isDirty(); // false
+        // $user->isClean(); // true
+        // dd($user->isDirty());
+        
     }
 }
