@@ -22,13 +22,13 @@
                 <div class="form-group row">
                     <label class="col-1 control-label col-form-label">Filter:</label>
                     <div class="col-3">
-                        <select class="form-control" id="kategori_id" name="kategori_id">
-                            <option value="">- Semua -</option>
+                        <select class="form-control" id="kategori_id" name="kategori_id" required>
+                            <option value="">- Semua Kategori -</option>
                             @foreach($kategori as $item)
                                 <option value="{{ $item->kategori_id }}">{{ $item->kategori_nama }}</option>
                             @endforeach
                         </select>
-                        <small class="form-text text-muted">Kategori Barang</small>
+                        <small class="form-text text-muted">Filter berdasarkan Kategori Barang</small>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,6 @@
                     <th>ID</th>
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
-                    <th>Kategori Barang</th>
                     <th>Harga Beli</th>
                     <th>Harga Jual</th>
                     <th>Aksi</th>
@@ -62,29 +61,62 @@ function modalAction(url = ''){
     });
 };
 
+var dataBarang;
 $(document).ready(function() {
-    var dataBarang = $('#table_barang').DataTable({
+    dataBarang = $('#table_barang').DataTable({
         serverSide: true,
         ajax: {
-            url: "{{ url('barang/list') }}",
-            type: "POST",
-            data: function (d) {
-                d.kategori_id = $('#kategori_id').val(); // Pass the selected category_id for filtering
+            "url": "{{ url('barang/list') }}",
+            "dataType": "json",
+            "type": "POST",
+            "data": function (d) {
+                d.kategori_id = $('#kategori_id').val();
             }
         },
         columns: [
-            { data: "DT_RowIndex", className: "text-center", orderable: false, searchable: false },
-            { data: "barang_kode", orderable: true, searchable: true },
-            { data: "barang_nama", orderable: true, searchable: true },
-            { data: "kategori.kategori_nama", orderable: true, searchable: true }, // Ensure this matches the name in the addColumn method
-            { data: "harga_beli", orderable: true, searchable: false, render: $.fn.dataTable.render.number(',', '.', 0, 'Rp ') },
-            { data: "harga_jual", orderable: true, searchable: false, render: $.fn.dataTable.render.number(',', '.', 0, 'Rp ') },
-            { data: "aksi", orderable: false, searchable: false }
+            {
+                // nomor urut dari laravel datatable addIndexColumn()
+                data: "DT_RowIndex",
+                className: "text-center",
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: "barang_kode",
+                orderable: true,
+                searchable: true
+            },
+            {
+                data: "barang_nama",
+                orderable: true,
+                searchable: true
+            },
+            {
+                data: "harga_beli",
+                orderable: true,
+                searchable: false,
+                render: function(data, type, row) {
+                    return 'Rp ' + new Intl.NumberFormat('id-ID').format(data);
+                }
+            },
+            {
+                data: "harga_jual",
+                orderable: true,
+                searchable: false,
+                render: function(data, type, row) {
+                    return 'Rp ' + new Intl.NumberFormat('id-ID').format(data);
+                }
+            },
+            {
+                data: "aksi",
+                orderable: false,
+                searchable: false
+            }
         ]
     });
 
     $('#kategori_id').on('change', function() {
-        dataBarang.ajax.reload(); // Reload data when category filter changes
+        dataBarang.ajax.reload();
     });
 });
 </script>

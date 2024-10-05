@@ -17,7 +17,7 @@
     </div>
 </div>
 @else
-<form action="{{ url('/level/' . $level->level_id . '/update_ajax') }}" method="POST" id="form-edit-level">
+<form action="{{ url('/level/' . $level->level_id . '/update_ajax') }}" method="POST" id="form-edit">
     @csrf
     @method('PUT')
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
@@ -50,10 +50,10 @@
 
 <script>
 $(document).ready(function() {
-    $("#form-edit-level").validate({
+    $("#form-edit").validate({
         rules: {
-            level_nama: { required: true, minlength: 3, maxlength: 100 },
-            level_kode: { required: true, minlength: 3, maxlength: 10 }
+            level_kode: { required: true, minlength: 3, maxlength: 10 },
+            level_nama: { required: true, minlength: 3, maxlength: 100 }
         },
         submitHandler: function(form) {
             $.ajax({
@@ -68,7 +68,7 @@ $(document).ready(function() {
                             title: 'Berhasil',
                             text: response.message
                         });
-                        dataLevel.ajax.reload(); // Reload the DataTable for levels
+                        dataLevel.ajax.reload(); // Pastikan ini sesuai dengan nama datatable Anda
                     } else {
                         $('.error-text').text('');
                         $.each(response.msgField, function(prefix, val) {

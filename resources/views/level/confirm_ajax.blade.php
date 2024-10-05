@@ -1,23 +1,23 @@
 @empty($level)
-<div id="modal-master" class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Kesalahan</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="alert alert-danger">
-                <h5><i class="icon fas fa-ban"></i> Kesalahan!!!</h5>
-                Data yang anda cari tidak ditemukan
+    <div id="modal-master" class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Kesalahan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <a href="{{ url('/level') }}" class="btn btn-warning">Kembali</a>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <h5><i class="icon fas fa-ban"></i> Kesalahan!!!</h5>
+                    Data yang anda cari tidak ditemukan
+                </div>
+                <a href="{{ url('/level') }}" class="btn btn-warning">Kembali</a>
+            </div>
         </div>
     </div>
-</div>
 @else
-<form action="{{ url('/level/' . $level->level_id . '/delete_ajax') }}" method="POST" id="form-delete-level">
+<form action="{{ url('/level/' . $level->level_id . '/delete_ajax') }}" method="POST" id="form-delete">
     @csrf
     @method('DELETE')
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
@@ -30,8 +30,8 @@
             </div>
             <div class="modal-body">
                 <div class="alert alert-warning">
-                    <h5><i class="icon fas fa-ban"></i> Konfirmasi !!!</h5>
-                    Apakah Anda ingin menghapus data level seperti di bawah ini?
+                    <h5><i class="icon fas fa-exclamation-triangle"></i> Konfirmasi !!!</h5>
+                    Apakah Anda ingin menghapus data level berikut?
                 </div>
                 <table class="table table-sm table-bordered table-striped">
                     <tr>
@@ -46,7 +46,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
-                <button type="submit" class="btn btn-primary">Ya, Hapus</button>
+                <button type="submit" class="btn btn-danger">Ya, Hapus</button>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
 
 <script>
 $(document).ready(function() {
-    $("#form-delete-level").validate({
+    $("#form-delete").validate({
         rules: {},
         submitHandler: function(form) {
             $.ajax({
@@ -69,7 +69,7 @@ $(document).ready(function() {
                             title: 'Berhasil',
                             text: response.message
                         });
-                        dataLevel.ajax.reload(); // Reload the DataTable for levels
+                        dataLevel.ajax.reload(); // Ganti ini sesuai nama datatable Anda
                     } else {
                         $('.error-text').text('');
                         $.each(response.msgField, function(prefix, val) {
