@@ -94,6 +94,8 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
             Route::put('/{id}/update_ajax', [BarangController::class, 'update_ajax']);      // menyimpan perubahan data barang Ajax
             Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']);  // untuk tampilkan form confirm delete barang Ajax
             Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']);  // untuk hapus data barang Ajax
+            Route::get('/import', [BarangController::class, 'import']);      // ajax form upload excel
+            Route::post('/import_ajax', [BarangController::class, 'import_ajax']);       // ajax form import excel
             Route::delete('/{id}', [BarangController::class, 'destroy']);  // menghapus data barang
         });
     });
