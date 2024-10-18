@@ -36,30 +36,37 @@
           </div>
       </li>
 
-   <!-- User Info Dropdown Menu -->
-<li class="nav-item dropdown {{ $activeMenu == 'profile' ? 'active' : '' }}">
-    <a class="nav-link" data-toggle="dropdown" href="#">
-        <!-- Display user profile picture or a default icon -->
-        <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('path_to_default_image.jpg') }}" alt="User Avatar" class="img-circle" style="width: 30px; height: 30px;">
-        <span class="ml-2">{{ Auth::user()->username }} ({{ Auth::user()->level->level_nama }})</span> <!-- Menampilkan nama dan level pengguna -->
-    </a>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <!-- Link ke halaman profil -->
-        <a href="{{ route('profile') }}" class="dropdown-item {{ $activeMenu == 'profile' ? 'active' : '' }}">
-            <i class="fas fa-user-circle mr-2"></i> Profile
+    <!-- User Info Dropdown Menu -->
+    <li class="nav-item dropdown {{ $activeMenu == 'profile' ? 'active' : '' }}">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+            <!-- Container for Profile Image or Icon -->
+            <div class="d-flex align-items-center">
+                @if (Auth::user()->profile_picture)
+                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" 
+                        alt="User Avatar" 
+                        class="img-circle" 
+                        style="width: 30px; height: 30px;">
+                @else
+                    <i class="fas fa-user-circle" style="font-size: 30px; color: #ccc;"></i> <!-- Default icon -->
+                @endif
+                <span class="ml-2">{{ Auth::user()->username }} ({{ Auth::user()->level->level_nama }})</span> <!-- Menampilkan nama dan level pengguna -->
+            </div>
         </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <!-- Link ke halaman profil -->
+            <a href="{{ route('profile') }}" class="dropdown-item {{ $activeMenu == 'profile' ? 'active' : '' }}">
+                <i class="fas fa-user-circle mr-2"></i> Profile
+            </a>
 
-        <!-- Divider untuk memisahkan logout dari item lainnya -->
-        <div class="dropdown-divider"></div>
+            <!-- Divider untuk memisahkan logout dari item lainnya -->
+            <div class="dropdown-divider"></div>
 
-        <!-- Link untuk logout -->
-        <a href="{{ url('logout') }}" class="dropdown-item">
-            <i class="fas fa-sign-out-alt mr-2"></i> Logout
-        </a>
-    </div>
-</li>
-
-
+            <!-- Link untuk logout -->
+            <a href="{{ url('logout') }}" class="dropdown-item">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </a>
+        </div>
+    </li>
 
       <!-- Fullscreen and Control Sidebar Options -->
       <li class="nav-item">
