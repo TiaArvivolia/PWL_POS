@@ -37,6 +37,10 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
             Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']);  // untuk tampilkan form confirm delete user Ajax
             Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax']);  // untuk hapus data user Ajax
             Route::delete('/{id}', [UserController::class, 'destroy']);  // menghapus data user
+            Route::get('/import', [UserController::class, 'import']);      // ajax form upload excel
+            Route::post('/import_ajax', [UserController::class, 'import_ajax']);       // ajax form import excel
+            Route::get('/export_excel', [UserController::class, 'export_excel']);       // ajax form export excel
+            Route::get('/export_pdf', [UserController::class, 'export_pdf']);       // ajax form export pdf
         });
     });
 

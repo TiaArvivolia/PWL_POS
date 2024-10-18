@@ -5,6 +5,9 @@
     <div class="card-header">
         <h3 class="card-title">{{ $page->title }}</h3>
         <div class="card-tools">
+            <button onclick="modalAction('{{ url('user/import') }}')" class="btn btn-info btn-sm mt-1">Import User</button>
+            <a href="{{ url('user/export_excel') }}" class="btn btn-primary btn-sm mt-1">Export to Excel</a>
+            <a href="{{ url('user/export_pdf') }}" class="btn btn-warning btn-sm mt-1">Export to PDF</a>
             <a class="btn btn-sm btn-primary mt-1" href="{{ url('user/create') }}">Tambah</a>
             <button onclick="modalAction('{{ url('user/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
         </div>
@@ -55,7 +58,7 @@
 @push('js')
 <script>
 function modalAction(url = ''){
-    $('#myModal').load(url,function(){
+    $('#myModal').load(url, function(){
         $('#myModal').modal('show');
     });
 };
@@ -63,7 +66,6 @@ function modalAction(url = ''){
 var dataUser;
 $(document).ready(function() {
     dataUser = $('#table_user').DataTable({
-        // serverSide: true, jika ingin menggunakan server side processing
         serverSide: true,
         ajax: {
             "url": "{{ url('user/list') }}",
@@ -75,7 +77,6 @@ $(document).ready(function() {
         },
         columns: [
             {
-                // nomor urut dari laravel datatable addIndexColumn()
                 data: "DT_RowIndex",
                 className: "text-center",
                 orderable: false,
@@ -92,7 +93,6 @@ $(document).ready(function() {
                 searchable: true
             },
             {
-                // mengambil data level hasil dari ORM berelasi
                 data: "level.level_nama",
                 orderable: false,
                 searchable: false
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
     $('#level_id').on('change', function() {
         dataUser.ajax.reload();
-    })
+    });
 });
 </script>
 @endpush
