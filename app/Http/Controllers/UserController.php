@@ -6,8 +6,11 @@ use App\Models\LevelModel;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Monolog\Level;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 // use App\Http\Controllers\DataTables;
@@ -470,5 +473,42 @@ class UserController extends Controller
         $pdf->render();
 
         return $pdf->stream('Data User ' . date('Y-m-d H:i:s') . '.pdf');
+    }
+
+    // Menampilkan halaman profil
+    public function showProfile()
+    {
+        $user = Auth::user(); // Mendapatkan user yang sedang login
+        $activeMenu = 'profile'; // Set active menu untuk halaman profile
+
+        $breadcrumb = (object) [
+            'title' => 'Profile',
+            'list' => ['Home']
+        ];
+
+        return view('profile', compact('user', 'activeMenu', 'breadcrumb'));
+    }
+
+    public function uploadProfilePicture(Request $request)
+    {
+        $request->validate([
+            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        // Hapus gambar profil lama jika ada
+        if ($user->profile_picture) {
+            Storage::delete($user->profile_picture);
+        }
+
+        // Simpan gambar baru
+        $path = $request->file('profile_picture')->store('profile_pictures');
+
+        // Update path di database
+        $user->profile_picture = $path;
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Profile picture updated successfully.');
     }
 }

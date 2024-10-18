@@ -18,6 +18,13 @@ Route::get('register', [AuthController::class, 'register']);
 Route::post('register', [AuthController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () { // artinya semua route di dalam group ini harus login dulu
+
+    // Route untuk menampilkan profil
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+
+    // Route untuk update profil (termasuk upload gambar)
+    Route::post('/profile/upload', [UserController::class, 'uploadProfilePicture'])->name('profile.upload');
+
     Route::get('/', [WelcomeController::class, 'index']);
 
     Route::middleware(['authorize:ADM,MNG'])->group(function () {
