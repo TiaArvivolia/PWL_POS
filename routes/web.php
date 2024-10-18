@@ -55,6 +55,10 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
         Route::get('/level/{id}/edit', [LevelController::class, 'edit']);  // menampilkan halaman form edit level
         Route::put('/level/{id}', [LevelController::class, 'update']);     // menyimpan perubahan data level
         Route::delete('/level/{id}', [LevelController::class, 'destroy']); // menghapus data level
+        Route::get('/level/import', [LevelController::class, 'import']);      // ajax form upload excel
+        Route::post('/level/import_ajax', [LevelController::class, 'import_ajax']);       // ajax form import excel
+        Route::get('/level/export_excel', [LevelController::class, 'export_excel']);       // ajax form export excel
+        Route::get('/level/export_pdf', [LevelController::class, 'export_pdf']);       // ajax form export pdf
     });
 
     Route::middleware(['authorize:ADM,MNG'])->group(function () {
