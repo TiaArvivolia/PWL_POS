@@ -5,6 +5,9 @@
     <div class="card-header">
         <h3 class="card-title">{{ $page->title }}</h3>
         <div class="card-tools">
+            <button onclick="modalAction('{{ url('kategori/import') }}')" class="btn btn-sm btn-info mt-1">Import Kategori</button>
+            <a href="{{ url('kategori/export_excel') }}" class="btn btn-sm btn-primary mt-1">Export Excel</a>
+            <a href="{{ url('kategori/export_pdf') }}" class="btn btn-sm btn-warning mt-1">Export PDF</a>
             <a class="btn btn-sm btn-primary mt-1" href="{{ url('kategori/create') }}">Tambah</a>
             <button onclick="modalAction('{{ url('kategori/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
         </div>
@@ -48,9 +51,6 @@
 <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" data-width="75%" aria-hidden="true"></div>
 @endsection
 
-@push('css')
-@endpush
-
 @push('js')
 <script>
 function modalAction(url = ''){
@@ -61,7 +61,7 @@ function modalAction(url = ''){
 var dataKategori;
 $(document).ready(function() {
     dataKategori = $('#table_kategori').DataTable({
-        // serverSide: true, jika ingin menggunakan server side processing
+        processing: true,
         serverSide: true,
         ajax: {
             "url": "{{ url('kategori/list') }}",
@@ -73,7 +73,6 @@ $(document).ready(function() {
         },
         columns: [
             {
-                // nomor urut dari laravel datatable addIndexColumn()
                 data: "DT_RowIndex",
                 className: "text-center",
                 orderable: false,
