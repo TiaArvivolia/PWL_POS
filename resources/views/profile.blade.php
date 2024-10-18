@@ -19,10 +19,14 @@
             </div>
             <div class="card-body box-profile">
                 <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" 
-                         src="{{ asset('storage/' . $user->profile_picture) }}" 
-                         alt="User profile picture"
-                         style="width: 128px; height: 128px; object-fit: cover;"> <!-- Set fixed dimensions and maintain aspect ratio -->
+                    @if ($user->profile_picture)
+                        <img class="profile-user-img img-fluid img-circle" 
+                             src="{{ asset('storage/' . $user->profile_picture) }}" 
+                             alt="User profile picture"
+                             style="width: 128px; height: 128px; object-fit: cover;"> <!-- Set fixed dimensions and maintain aspect ratio -->
+                    @else
+                        <i class="fas fa-user-circle" style="font-size: 128px; color: #ccc;"></i> <!-- Default icon -->
+                    @endif
                 </div>
                 <h3 class="profile-username text-center" style="color: black;">{{ $user->name }}</h3> <!-- Ambil nama dari User -->
                 <p class="text-muted text-center" style="color: black;">{{ $user->level->level_nama }}</p> <!-- Ambil level dari relasi -->
@@ -33,9 +37,6 @@
                     </li>
                     <li class="list-group-item">
                         <b>Username</b> <a class="float-right" style="color: black;">{{ $user->username }}</a> <!-- Ambil username dari User -->
-                    </li>
-                    <li class="list-group-item">
-                        <b>Level</b> <a class="float-right" style="color: black;">{{ $user->level->level_nama }}</a>
                     </li>
                     <li class="list-group-item">
                         <b>Level</b> <a class="float-right" style="color: black;">{{ $user->level->level_nama }}</a>
