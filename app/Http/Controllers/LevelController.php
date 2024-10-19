@@ -208,9 +208,9 @@ class LevelController extends Controller
                 foreach ($data as $row => $value) {
                     if ($row > 1) { // Skip the first row (header)
                         $insert[] = [
-                            'level_id' => $value['A'],
-                            'level_kode' => $value['B'],
-                            'level_nama' => $value['C'],
+                            // 'level_id' is auto increment, no need to insert it manually
+                            'level_kode' => $value['A'], // Assuming kode is in column A
+                            'level_nama' => $value['B'], // Assuming nama is in column B
                             'created_at' => now(),
                         ];
                     }

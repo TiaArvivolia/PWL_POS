@@ -340,10 +340,10 @@ class SupplierController extends Controller
                 foreach ($data as $row => $value) {
                     if ($row > 1) { // Skip the first row (header)
                         $insert[] = [
-                            'supplier_id' => $value['A'],
-                            'supplier_kode' => $value['B'],
-                            'supplier_nama' => $value['C'],
-                            'supplier_alamat' => $value['D'],
+                            // 'supplier_id' => $value['A'],
+                            'supplier_kode' => $value['A'],
+                            'supplier_nama' => $value['B'],
+                            'supplier_alamat' => $value['C'],
                             'created_at' => now(),
                         ];
                     }
