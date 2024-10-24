@@ -25,6 +25,12 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
     // Route untuk update profil (termasuk upload gambar)
     Route::post('/profile/upload', [UserController::class, 'uploadProfilePicture'])->name('profile.upload');
 
+    // Route untuk update informasi pengguna
+    Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
+
+    // Route untuk mengubah password
+    Route::post('/profile/change-password', [UserController::class, 'changePassword'])->name('profile.changePassword');
+
     Route::get('/', [WelcomeController::class, 'index']);
 
     Route::middleware(['authorize:ADM,MNG'])->group(function () {
@@ -58,6 +64,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
         Route::get('/level/create_ajax', [LevelController::class, 'create_ajax']);
         Route::post('/level', [LevelController::class, 'store']);         // menyimpan data level baru
         Route::post('/level/ajax', [LevelController::class, 'store_ajax']);
+        Route::get('/level/{id}/show_ajax', [LevelController::class, 'show_ajax']);        // menampilkan detail barang Ajax
         Route::get('/level/{id}/edit_ajax', [LevelController::class, 'edit_ajax']);
         Route::put('/level/{id}/update_ajax', [LevelController::class, 'update_ajax']);
         Route::get('/level/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']);

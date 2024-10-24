@@ -511,4 +511,36 @@ class UserController extends Controller
 
         return redirect()->route('profile')->with('success', 'Profile picture updated successfully.');
     }
+
+    // Update profile information
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string|min:3|unique:m_user,username,' . Auth::id() . ',user_id',
+            'nama'     => 'required|string|max:100',
+        ]);
+
+        $user = Auth::user();
+        $user->update([
+            'username' => $request->username,
+            'nama'     => $request->nama,
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+    }
+
+    // Change user password
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $user = Auth::user();
+        $user->update([
+            'password' => bcrypt($request->password),
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Password changed successfully.');
+    }
 }
