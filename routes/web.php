@@ -164,6 +164,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
             Route::put('/{id}/update_ajax', [StokController::class, 'update_ajax']);      // menyimpan perubahan data stok Ajax
             Route::get('/{id}/delete_ajax', [StokController::class, 'confirm_ajax']);  // untuk tampilkan form confirm delete stok Ajax
             Route::delete('/{id}/delete_ajax', [StokController::class, 'delete_ajax']);  // untuk hapus data stok Ajax
+            Route::get('/import', [StokController::class, 'import']);      
             Route::post('/import_ajax', [StokController::class, 'import_ajax']);       // ajax form import excel untuk stok
             Route::get('/export_excel', [StokController::class, 'export_excel']);       // ajax form export excel untuk stok
             Route::get('/export_pdf', [StokController::class, 'export_pdf']);       // ajax form export pdf untuk stok
