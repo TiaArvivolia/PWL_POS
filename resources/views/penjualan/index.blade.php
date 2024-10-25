@@ -5,11 +5,20 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                {{-- <a href="{{ url('supplier/create') }}" class="btn btn-sm btn-primary mt-1">Tambah</a> --}}
-                <a href="{{ url('/penjualan/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i>Export Penjualan</a>
-                <a href="{{ url('/penjualan/export_pdf') }}" class="btn btn-warning"><i class="fa fa-file-pdf"></i>Export Penjualan</a>
-                <button onclick="modalAction('{{ url('penjualan/create_ajax') }}')" class="btn btn-success">Tambah Penjualan (Ajax)</button>
+                <a href="{{ url('/penjualan/export_excel') }}" class="btn btn-primary btn-sm mt-1">
+                    <i class="fa fa-file-excel"></i>
+                    <span> Export Penjualan</span>
+                </a>
+                <a href="{{ url('/penjualan/export_pdf') }}" class="btn btn-warning btn-sm mt-1">
+                    <i class="fa fa-file-pdf"></i>
+                    <span> Export Penjualan</span>
+                </a>
+                <button onclick="modalAction('{{ url('penjualan/create_ajax') }}')" class="btn btn-success btn-sm mt-1">
+                    <i class="fa fa-plus"></i>
+                    <span> Tambah Penjualan (Ajax)</span>
+                </button>
             </div>
+            
         </div>
         <div class="card-body">
             @if (session('success'))

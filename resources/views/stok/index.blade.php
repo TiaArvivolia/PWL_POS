@@ -6,11 +6,27 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <button onclick="modalAction('{{ url('/stok/import') }}')" class="btn btn-info">Import Stok</button>
-                <a href="{{ url('/stok/export_excel') }}" class="btn btn-success"><i class="fa fa-file-excel"></i> Export Stok Excel</a>
-                <a href="{{ url('/stok/export_pdf') }}" class="btn btn-warning"><i class="fa fa-file-pdf"></i> Export Stok PDF</a>
-                <button onclick="modalAction('{{ url('/stok/create_ajax') }}')" class="btn btn-success">Tambah Data</button>
+                <!-- Import Stock Button -->
+                <button onclick="modalAction('{{ url('/stok/import') }}')" class="btn btn-info btn-sm mt-1">
+                    <i class="fas fa-file-import"></i> Import Stok
+                </button>
+            
+                <!-- Export Stock to Excel Button -->
+                <a href="{{ url('/stok/export_excel') }}" class="btn btn-success btn-sm mt-1">
+                    <i class="fas fa-file-excel"></i> Export Stok Excel
+                </a>
+            
+                <!-- Export Stock to PDF Button -->
+                <a href="{{ url('/stok/export_pdf') }}" class="btn btn-warning btn-sm mt-1">
+                    <i class="fas fa-file-pdf"></i> Export Stok PDF
+                </a>
+            
+                <!-- Add Data Button -->
+                <button onclick="modalAction('{{ url('/stok/create_ajax') }}')" class="btn btn-primary btn-sm mt-1">
+                    <i class="fas fa-plus"></i> Tambah Data
+                </button>
             </div>
+            
         </div>
         <div class="card-body">
             @if (session('success'))

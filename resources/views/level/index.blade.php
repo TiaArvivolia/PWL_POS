@@ -5,10 +5,18 @@
     <div class="card-header">
         <h3 class="card-title">{{ $page->title }}</h3>
         <div class="card-tools">
-            <button onclick="modalAction('{{ url('/level/import') }}')" class="btn btn-info btn-sm mt-1">Import Level</button>
-            <a href="{{ url('/level/export_excel') }}" class="btn btn-primary btn-sm mt-1">Export Level</a>
-            <a href="{{ url('/level/export_pdf') }}" class="btn btn-warning btn-sm mt-1">Export Level</a>
-            <button onclick="modalAction('{{ url('level/create_ajax') }}')" class="btn btn-success btn-sm mt-1">Tambah Ajax</button>
+            <button onclick="modalAction('{{ url('/level/import') }}')" class="btn btn-info btn-sm mt-1">
+                <i class="fas fa-file-import"></i> Import Level
+            </button>
+            <a href="{{ url('/level/export_excel') }}" class="btn btn-primary btn-sm mt-1">
+                <i class="fas fa-file-excel"></i> Export Level
+            </a>
+            <a href="{{ url('/level/export_pdf') }}" class="btn btn-warning btn-sm mt-1">
+                <i class="fas fa-file-pdf"></i> Export Level
+            </a>
+            <button onclick="modalAction('{{ url('level/create_ajax') }}')" class="btn btn-success btn-sm mt-1">
+                <i class="fas fa-plus"></i> Tambah Ajax
+            </button>
         </div>
     </div>    
 

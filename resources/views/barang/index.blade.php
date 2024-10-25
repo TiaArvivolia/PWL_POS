@@ -5,11 +5,27 @@
     <div class="card-header">
         <h3 class="card-title">Daftar barang</h3>
         <div class="card-tools">
-            <button onclick="modalAction('{{ url('/barang/import') }}')" class="btn btn-info btn-sm mt-1">Import Barang</button>
-            <a href="{{ url('/barang/export_excel') }}" class="btn btn-primary btn-sm mt-1">Export Barang</a>
-            <a href="{{ url('/barang/export_pdf') }}" class="btn btn-warning btn-sm mt-1">Export Barang</a>
-            <button onclick="modalAction('{{ url('/barang/create_ajax') }}')" class="btn btn-success btn-sm mt-1">Tambah Data (Ajax)</button>
+            <!-- Import Button with Icon -->
+            <button onclick="modalAction('{{ url('/barang/import') }}')" class="btn btn-info btn-sm mt-1">
+                <i class="fas fa-file-import"></i> Import Barang
+            </button>
+        
+            <!-- Export to Excel Button with Icon -->
+            <a href="{{ url('/barang/export_excel') }}" class="btn btn-primary btn-sm mt-1">
+                <i class="fa fa-file-excel"></i> Export Barang
+            </a>
+        
+            <!-- Export to PDF Button with Icon -->
+            <a href="{{ url('/barang/export_pdf') }}" class="btn btn-warning btn-sm mt-1">
+                <i class="fa fa-file-pdf"></i> Export Barang
+            </a>
+        
+            <!-- Add Data Button with Icon -->
+            <button onclick="modalAction('{{ url('/barang/create_ajax') }}')" class="btn btn-success btn-sm mt-1">
+                <i class="fas fa-plus"></i> Tambah Data (Ajax)
+            </button>
         </div>
+        
     </div>
 
     <div class="card-body">

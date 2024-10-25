@@ -5,12 +5,22 @@
     <div class="card-header">
         <h3 class="card-title">{{ $page->title }}</h3>
         <div class="card-tools">
-            <button onclick="modalAction('{{ url('user/import') }}')" class="btn btn-info btn-sm mt-1">Import User</button>
-            <a href="{{ url('user/export_excel') }}" class="btn btn-primary btn-sm mt-1">Export to Excel</a>
-            <a href="{{ url('user/export_pdf') }}" class="btn btn-warning btn-sm mt-1">Export to PDF</a>
-            <a class="btn btn-sm btn-primary mt-1" href="{{ url('user/create') }}">Tambah</a>
-            <button onclick="modalAction('{{ url('user/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
-        </div>
+            <button onclick="modalAction('{{ url('user/import') }}')" class="btn btn-info btn-sm mt-1">
+                <i class="fas fa-file-import"></i> Import User
+            </button>
+            <a href="{{ url('user/export_excel') }}" class="btn btn-primary btn-sm mt-1">
+                <i class="fas fa-file-excel"></i> Export to Excel
+            </a>
+            <a href="{{ url('user/export_pdf') }}" class="btn btn-warning btn-sm mt-1">
+                <i class="fas fa-file-pdf"></i> Export to PDF
+            </a>
+            {{-- <a class="btn btn-sm btn-primary mt-1" href="{{ url('user/create') }}">
+                <i class="fas fa-plus"></i> Tambah
+            </a> --}}
+            <button onclick="modalAction('{{ url('user/create_ajax') }}')" class="btn btn-sm btn-success mt-1">
+                <i class="fas fa-plus"></i> Tambah Ajax
+            </button>
+        </div>        
     </div>
 
     <div class="card-body">
