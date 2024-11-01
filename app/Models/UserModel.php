@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\LevelModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable; // implementasi class Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UserModel extends Authenticatable
+class UserModel extends Authenticatable implements JWTSubject
 {
     public function getJWTIdentifier(){
         return $this->getKey();
