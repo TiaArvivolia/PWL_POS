@@ -11,6 +11,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable; // implementasi class Au
 
 class UserModel extends Authenticatable
 {
+    public function getJWTIdentifier(){
+        return $this->getKey();
+    }
+    
+    public function getJWTCustomClaims(){
+        return [];
+    }
+    
     use HasFactory;
 
     protected $table = 'm_user';

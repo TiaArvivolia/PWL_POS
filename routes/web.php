@@ -175,7 +175,7 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
         Route::get('/penjualan', [PenjualanController::class, 'index']);
         Route::post('/penjualan/list', [PenjualanController::class, 'list'])->name('penjualan.list');
         Route::get('/penjualan/create_ajax', [PenjualanController::class, 'create_ajax']);
-        Route::post('/penjualan/store_ajax', [PenjualanController::class, 'store_ajax']);
+        Route::post('/penjualan/ajax', [PenjualanController::class, 'store_ajax']);
         Route::get('/penjualan/{id}/show_ajax', [PenjualanController::class, 'show_ajax']);
         Route::get('/penjualan/{id}/edit_ajax', [PenjualanController::class, 'edit_ajax']);
         Route::put('/penjualan/{id}/update_ajax', [PenjualanController::class, 'update_ajax']);
@@ -184,8 +184,14 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
         Route::post('/penjualan/import_ajax', [PenjualanController::class, 'import_ajax']);
         Route::get('/penjualan/export_excel', [PenjualanController::class, 'export_excel']);
         Route::get('/penjualan/export_pdf', [PenjualanController::class, 'export_pdf']);
+        Route::get('/penjualan/{id}/detail', [PenjualanController::class, 'detail'])->name('penjualan.detail');
+        Route::post('/penjualan/{id}/detail/store', [PenjualanController::class, 'storeDetail'])->name('penjualan.detail.store');
     });
+
+    
 });
+
+    
 
 
 
