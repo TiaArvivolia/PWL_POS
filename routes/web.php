@@ -187,8 +187,6 @@ Route::middleware(['auth'])->group(function () { // artinya semua route di dalam
         Route::get('/penjualan/{id}/detail', [PenjualanController::class, 'detail'])->name('penjualan.detail');
         Route::post('/penjualan/{id}/detail/store', [PenjualanController::class, 'storeDetail'])->name('penjualan.detail.store');
     });
-
-    
 });
 
     
