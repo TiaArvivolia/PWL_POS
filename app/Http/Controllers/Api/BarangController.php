@@ -17,8 +17,6 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
-        // $barang = BarangModel::create($request->all());
-
         // Set validation
         $validator = Validator::make($request->all(), [
             'barang_kode' => 'required|string|unique:m_barang,barang_kode|max:10', // Unique constraint for barang_kode
