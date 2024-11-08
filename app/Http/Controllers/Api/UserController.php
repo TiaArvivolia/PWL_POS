@@ -9,16 +9,17 @@ use Monolog\User;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return UserModel::all();
     }
 
     public function store(Request $request)
     {
-    $data = $request->all();
-    $data['level_id'] = $data['level_id'] ?? 1; // set a default value if missing
-    $user = UserModel::create($data);
-    return response()->json($user, 201);
+        $data = $request->all();
+        $data['level_id'] = $data['level_id'] ?? 1; // set a default value if missing
+        $user = UserModel::create($data);
+        return response()->json($user, 201);
     }
 
 
@@ -36,7 +37,7 @@ class UserController extends Controller
     public function destroy(UserModel $user)
     {
         $user->delete();
-        
+
         return response()->json([
             'success' => true,
             'message' => 'Data Terhapus',

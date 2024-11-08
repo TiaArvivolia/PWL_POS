@@ -52,13 +52,13 @@ class PenjualanController extends Controller
 
     public function show($id)
     {
-       $penjualan = PenjualanModel::find($id);
-       if (is_null($penjualan)) {
-           return response()->json(['message' => 'No data found for the provided id'],  404);
-       }else{
-           return response()->json(['data'=>$penjualan]);
-        // return PenjualanModel::find($id);
-       }
+        $penjualan = PenjualanModel::find($id);
+        if (is_null($penjualan)) {
+            return response()->json(['message' => 'No data found for the provided id'],  404);
+        } else {
+            return response()->json(['data' => $penjualan]);
+            // return PenjualanModel::find($id);
+        }
     }
 
     public function update(Request $request, $id)
@@ -67,21 +67,22 @@ class PenjualanController extends Controller
         $penjualan->update($request->all());
 
         return response()->json([
-           'message' => 'Successfully updated penjualan!',
-           'data' =>  $penjualan
+            'message' => 'Successfully updated penjualan!',
+            'data' =>  $penjualan
         ]);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
             $penjualan = PenjualanModel::findOrFail($id);
-            $penjualan -> delete();
+            $penjualan->delete();
 
-          return response()->json([
-              "message"=>"Record deleted successfully!"
-          ]);
-       } catch (\Exception $e) {
-           return response()->json(['message'=> 'Failed to delete record'],400);
-       }
+            return response()->json([
+                "message" => "Record deleted successfully!"
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to delete record'], 400);
+        }
     }
 }
